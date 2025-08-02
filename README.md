@@ -1,8 +1,10 @@
-# Buddhist-Art
+# 🪷 Buddhist-Art
 
-A Mini Project local development tasks including NestJS , Vue and Docker
+A mini full-stack project using **Vue.js**, **NestJS**, and **Docker** for local development.
 
-## 📦 Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 📦 Buddhist-Art
@@ -14,30 +16,28 @@ A Mini Project local development tasks including NestJS , Vue and Docker
 
 ---
 
-## 📦 Installation
+## ⚙️ Installation & Setup
 
-### 1. Install Workspace Dependency
+### 1. Install root dependencies
+
 ```bash
 npm i
 ```
 
-### 🚀 Usage
-
-### Install dependencies
+### 2. Install dependencies
 
 ```bash
 npm run setup
 ```
 
-## Start a service
+### 3. Start a service
 
 ```bash
 npm run start
 ```
 
 > Choose **one** service to run in the same terminal:
-- `Frontend (Vue)`
-- `Backend (NestJS)`
-
+- `🖼️ Frontend (Vue)`
+- `🔧 Backend (NestJS)`
 
 ---

@@ -9,7 +9,7 @@ const main = async () => {
     {
       type: 'list',
       name: 'choice',
-      message: 'คุณต้องการรันอะไร?',
+      message: 'Choose **one** service to run in the same terminal?',
       choices: ['Frontend (Vue)', 'Backend (NestJS)']
     }
   ]);

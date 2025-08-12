@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "@nestjs/mapped-types": "*"
+  },
   "name": "buddhist-art",
   "version": "0.0.1",
   "type": "module",

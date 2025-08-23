@@ -18,7 +18,7 @@ export class NewsController {
   @Post()
   @UseInterceptors(FileInterceptor('image' , imageUploadOptions('news')))
   create(@Request() req, @Body() createNewsDto: CreateNewsDto, @UploadedFile() image: Express.Multer.File) {
-    return this.newsService.create( req.user.username ,createNewsDto, image);
+    return this.newsService.create( req.user.studentId ,createNewsDto, image);
   }
 
   @Get()

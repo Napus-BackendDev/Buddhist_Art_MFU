@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@nestjs/mapped-types": "*"
+  },
+  "name": "buddhist-art",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "setup": "npm install --prefix frontend",
+    "start": "node start.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev"
+  },
+  "devDependencies": {
+    "inquirer": "^9.0.0"
+  }
+}

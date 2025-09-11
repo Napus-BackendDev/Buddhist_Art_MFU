@@ -14,12 +14,12 @@ import {
 import { ArtsService } from './arts.service';
 import { CreateArtDto } from './dto/create-art.dto';
 import { UpdateArtDto } from './dto/update-art.dto';
-import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
+import { JwtAuthGuard } from '../core/auth/guard/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { imageUploadOptions } from 'src/common/interceptors/upload-options';
-import { RolesGuard } from '../auth/guard/role.guard';
+import { RolesGuard } from '../core/auth/guard/role.guard';
 import { Role } from 'src/common/types/types';
-import { Roles } from '../auth/decorators/roles.decorator';
+import { Roles } from '../core/auth/decorators/roles.decorator';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller()

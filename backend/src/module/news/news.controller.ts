@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, 
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
-import { Roles } from '../auth/decorators/roles.decorator';
+import { Roles } from '../core/auth/decorators/roles.decorator';
 import { Role } from 'src/common/types/types';
-import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
-import { RolesGuard } from '../auth/guard/role.guard';
+import { JwtAuthGuard } from '../core/auth/guard/jwt-auth.guard';
+import { RolesGuard } from '../core/auth/guard/role.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { imageUploadOptions } from 'src/common/interceptors/upload-options';
 

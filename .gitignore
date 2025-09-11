@@ -3,6 +3,11 @@
 /node_modules
 /build
 
+# Docker
+docker-compose.yml
+dockerfile
+.dockerignore
+
 # Logs
 logs
 *.log
@@ -79,7 +84,7 @@ logs
 .fleet
 .idea
 
+
 # Local env files
 .env
-.env.*
 !.env.example

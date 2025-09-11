@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Request, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Request, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './guard/local-auth.guard';
@@ -16,6 +16,7 @@ export class AuthController {
     });
     return { message: 'Successfully Logging in' };
   }
+
 
   @UseGuards(LocalStrategy)
   @Post('/logout')

@@ -16,9 +16,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { RegisterDto } from './dto/register-user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { imageUploadOptions } from 'src/common/interceptors/upload-options';
-import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
-import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from 'src/common/types/types';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 import { RolesGuard } from '../auth/guard/role.guard';
 
 @UseGuards(JwtAuthGuard, RolesGuard)

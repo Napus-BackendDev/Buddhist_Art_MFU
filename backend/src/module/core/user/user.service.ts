@@ -14,8 +14,6 @@ import { generateImageUrl } from 'src/common/utils/utils';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  // ------------------  For Auth  ----------------------- //
-
   async resigter( resigterUserDto: RegisterDto, photo: Express.Multer.File ): Promise<UserDocument> {
     const studentId = resigterUserDto.studentId;
     const exists = await this.userModel.findOne({ studentId }).exec();
@@ -34,8 +32,6 @@ export class UserService {
   async findByStudentID(studentId: string): Promise<UserDocument | null> {
   return await this.userModel.findOne({ studentId }).populate('arts').exec();
   }
-
-  // ------------------  For Admin  ----------------------- //
 
   async findAll(): Promise<UserDocument[]> {
     return await this.userModel.find().exec();

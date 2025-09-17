@@ -17,6 +17,10 @@ export class AdminSeeder implements OnApplicationBootstrap {
 
     const AdminData = {
       studentId: this.configService.get<String>('ADMIN_USERNAME'),
+      username: {
+        th: 'แอดมิน',
+        en: 'Admin'
+      },
       password: this.configService.get<String>('ADMIN_PASSWORD'),
       email: this.configService.get<string>('ADMIN_EMAIL'),
       role: 'admin'
@@ -35,7 +39,6 @@ export class AdminSeeder implements OnApplicationBootstrap {
     }
 
     await this.userModel.create(AdminData)
-    
     this.logger.log('✅ สร้างแอดมินสำเร็จ')
     
   }

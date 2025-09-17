@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './module/user/user.module';
+import { UserModule } from './module/core/user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AuthModule } from './module/auth/auth.module';
+import { AuthModule } from './module/core/auth/auth.module';
 import { ArtsModule } from './module/arts/arts.module';
 import { OrderModule } from './module/order/order.module';
 import { NewsModule } from './module/news/news.module';

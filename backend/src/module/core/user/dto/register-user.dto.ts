@@ -30,9 +30,6 @@ export class RegisterDto {
   @IsNotEmpty()
   readonly studentId: string;
 
-  @IsString()
-  @IsNotEmpty()
-  readonly userId: string;
 
   @IsString()
   readonly tel: string;

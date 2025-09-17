@@ -15,8 +15,6 @@ export class User {
   email: Email;
   @Prop({ unique: true })
   studentId: string;
-  @Prop({ unique: true })
-  userId: string;
   @Prop()
   tel: string;
   @Prop()

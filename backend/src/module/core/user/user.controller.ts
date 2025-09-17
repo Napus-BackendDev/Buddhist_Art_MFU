@@ -21,22 +21,13 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from 'src/common/types/types';
 import { RolesGuard } from '../auth/guard/role.guard';
 
+@Roles(Role.STUDENT)
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Controller('user')
+@Controller('user/profile')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  // ------------------  For Student  ----------------------- //
-
-  @Roles(Role.STUDENT)
-  @Get('/profile')
-  getProfile(@Request() req) {
-    const user = this.userService.findByStudentID(req.user.studentId);
-    return user;
-  }
-
-  @Roles(Role.STUDENT)
-  @Patch('/profile')
+  @Patch()
   @UseInterceptors(FileInterceptor('photo', imageUploadOptions('profile')))
   async updateProfile(
     @Request() req,
@@ -46,37 +37,38 @@ export class UserController {
     return await this.userService.update(req.user._id, updateUserDto, photo);
   }
 
-  @Roles(Role.STUDENT)
-  @Delete('/profile')
+  @Delete()
   async deleteProfile(@Request() req) {
     return await this.userService.remove(req.user.sub);
   }
+}
 
-  // ------------------  For Admin  ----------------------- //
 
-  @Roles(Role.ADMIN)
+@Roles(Role.ADMIN)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('admin/user')
+export class AdminController {
+  constructor(private readonly userService: UserService) {}
+
   @Post('/register')
   @UseInterceptors(FileInterceptor('photo', imageUploadOptions('profile')))
-  resigter(
+  register(
     @Body() registerUserDto: RegisterDto,
     @UploadedFile() photo: Express.Multer.File,
   ) {
     return this.userService.resigter(registerUserDto, photo);
   }
 
-  @Roles(Role.ADMIN)
   @Get()
   findAll() {
     return this.userService.findAll();
   }
 
-  @Roles(Role.ADMIN)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Roles(Role.ADMIN)
   @UseInterceptors(FileInterceptor('photo', imageUploadOptions('profile')))
   @Patch(':id')
   async update(
@@ -87,7 +79,6 @@ export class UserController {
     return await this.userService.update(id, updateUserDto, photo);
   }
 
-  @Roles(Role.ADMIN)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);

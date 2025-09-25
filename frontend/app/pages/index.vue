@@ -42,7 +42,7 @@
       <h3 class="text-gray-600 mt-2">คัดสรรผลงานคุณภาพสูงจากศิลปินชั้นนำ</h3>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-10">
-      <NuxtLink v-for="art in Artworks" :key="art._id" :to="`/artworks/${art.artname}`">
+      <NuxtLink v-for="art in artworks" :key="art._id" :to="`/artworks/${art.artname}`">
         <ArtworkCard :art="art" />
       </NuxtLink>
     </div>
@@ -57,15 +57,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Arts } from '../../shared/types/art';
-const config = useRuntimeConfig()
 
-const { data: Artworks } = await useAsyncData<Arts[]>(() =>
-  $fetch<Arts[]>(`${config.public.apiUrl}/arts`).then(res => res.slice(0, 3))
-)
+const { artworks, isLoading, error, fetchArtworks } = await useFetchArtworks<Arts[]>();
 
-const uniqueTypes = computed(() => { return [...new Set(Artworks.value?.map(art => art.type) ?? [])] })
-console.log('Artworks', uniqueTypes.value)
+
+const uniqueTypes = computed(() => { return [...new Set(artworks.value?.map(art => art.type) ?? [])] })
 
 const ArtTypes = [
   { name: 'painting', label: 'จิตรกรรม', en: 'Painting', icon: '🖌️' },

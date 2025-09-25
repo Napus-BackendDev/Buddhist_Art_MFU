@@ -34,7 +34,6 @@ export class ArtsControllerStudent {
     @Body() createArtDto: CreateArtDto,
     @UploadedFile() picture: Express.Multer.File,
   ) {
-    console.log('REQ USER:', req.user);
     return this.artsService.create(
       createArtDto,
       picture,

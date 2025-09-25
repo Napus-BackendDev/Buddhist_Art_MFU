@@ -72,14 +72,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import type { ArtDetail, Arts } from '../../../shared/types/art'
-import { useFetchArtworksDetail } from '../../composables/useFetchArtworks'
 const config = useRuntimeConfig()
 const artworks = ref<Arts[]>([])
 
 const { artname } = useRoute().params
-const { artworkDetails } = useFetchArtworksDetail<ArtDetail>(`${config.public.apiUrl}/arts/${artname}`)
+const { artworkDetails } = useFetchArtworksDetail<ArtDetail>(artname as string)
 
 watch(
   () => artworkDetails.value?.user.username.th,

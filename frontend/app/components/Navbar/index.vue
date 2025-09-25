@@ -51,7 +51,7 @@
             <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">ออกจากระบบ</button>
           </div>
           <!-- Student: direct to profile -->
-          <NuxtLink v-else to="/login/profile"
+          <NuxtLink v-else to="/profile"
             class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-50 block px-4 py-2 hover:bg-gray-100">
             โปรไฟล์</NuxtLink>
         </div>

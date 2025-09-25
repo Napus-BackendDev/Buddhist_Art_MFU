@@ -1,10 +1,13 @@
-export function useFetchArtworks<T>(fetchUrl: string) {
+export function useFetchArtworks<T>() {
+  const config = useRuntimeConfig();
   const {
     data: artworks,
     pending: isLoading,
     error,
     refresh: fetchArtworks,
-  } = useAsyncData<T[]>(fetchUrl, () => $fetch<T[]>(fetchUrl));
+  } = useAsyncData<T>(`${config.public.apiUrl}/arts`, () =>
+    $fetch<T>(`${config.public.apiUrl}/arts`)
+  );
 
   return {
     artworks,
@@ -14,13 +17,14 @@ export function useFetchArtworks<T>(fetchUrl: string) {
   };
 }
 
-export function useFetchArtworksDetail<T>(fetchUrl: string) {
+export function useFetchArtworksDetail<T>(artname: string) {
+  const config = useRuntimeConfig();
   const {
     data: artworkDetails,
     pending: isLoading,
     error,
     refresh: fetchArtworkDetails,
-  } = useAsyncData<T>(fetchUrl, () => $fetch<T>(fetchUrl));
+  } = useAsyncData<T>(`${config.public.apiUrl}/arts/${artname}`, () => $fetch<T>(`${config.public.apiUrl}/arts/${artname}`));
 
   return {
     artworkDetails,
@@ -29,5 +33,3 @@ export function useFetchArtworksDetail<T>(fetchUrl: string) {
     fetchArtworkDetails,
   };
 }
-
-

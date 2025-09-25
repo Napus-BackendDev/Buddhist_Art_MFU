@@ -9,7 +9,6 @@ export function useProfile() {
     const { data } = await useFetch(`${config.public.apiUrl}/auth/profile`, {
       credentials: "include",
     });
-    console.log('fetchProfile data:', data.value)
     user.value = data.value as UserProfile;
   };
 

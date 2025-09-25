@@ -24,6 +24,6 @@
 <script setup lang="ts">
 import { useProfile } from '@/composables/useProfile';
 
-const { user, role, fetchProfile } = useProfile();
+const { user } = useProfile();
 
 </script>

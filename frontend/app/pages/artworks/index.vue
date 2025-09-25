@@ -37,10 +37,8 @@
 
 <script setup lang="ts">
 import type { Arts } from '../../../shared/types/art';
-import { useFetchArtworks } from '../../composables/useFetchArtworks'
 
-const config = useRuntimeConfig()
-const { artworks } = useFetchArtworks<Arts>(`${config.public.apiUrl}/arts`)
+const { artworks } = useFetchArtworks<Arts>()
 const uniqueTypes = computed(() => { return [...new Set(artworks.value?.map(art => art.type) ?? [])] })
 
 </script>

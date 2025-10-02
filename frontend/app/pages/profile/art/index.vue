@@ -10,7 +10,7 @@
                     placeholder="ค้นหาผลงานศิลปะ" class="w-full max-w-2xl" highlight
                     :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200' }" />
                 <div class="flex gap-3">
-                    
+                    <!-- Category Filter -->
                     <USelect v-model="categoryFilter" :items="categoryOptions" icon="material-symbols:filter-alt-outline" size="xl" variant="outline"
                         placeholder="กรองตามประเภท" highlight color="error"
                        :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200' ,content: 'bg-white shadow-lg ring-1 ring-gray-200', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
@@ -54,7 +54,7 @@ const { artworksByUser, fetchArtworksByUser } = useFetchArtworksByUser(user.valu
 function handleArtworkDelete() { fetchArtworksByUser() }
 
 const searchQuery = ref('')
-const categoryFilter = ref('')
+const categoryFilter = ref<'all' | string>('all')
 const sortBy = ref<'newest' | 'oldest' | 'price-low' | 'price-high' | 'name-asc' | 'name-desc'>('newest')
 
 const categoryOptions = computed(() => {

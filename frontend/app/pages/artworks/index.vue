@@ -1,41 +1,43 @@
 <template>
     <div class="w-full flex flex-col px-10">
-        <div class="flex flex-col items-center gap-2 my-8">
-            <h1 class="text-4xl md:text-5xl leading-tight font-extrabold text-red-600">ผลงานศิลปะทั้งหมด</h1>
-            <p class="text-gray-600 text-base md:text-lg">คอลเลกชันผลงานศิลปะคุณภาพสูงจากศิลปินมากความสามารถ</p>
-        </div>
-
-        <div class="flex items-center justify-between gap-5 mb-8">
-            <!-- Search Bar -->
-            <UInput v-model="searchQuery" icon="material-symbols:search" size="xl" variant="outline"
-                placeholder="ค้นหาผลงานศิลปะ" class="w-full max-w-2xl" highlight
-                :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200' }" />
-
-            <div class="flex gap-3">
-                <!-- Category Filter -->
-                <USelect v-model="categoryFilter" :items="categoryOptions" icon="material-symbols:filter-alt-outline"
-                    size="xl" variant="outline" placeholder="กรองตามประเภท" highlight color="error"
-                    :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200 max-h-fit', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
-                <!-- Sort Filter -->
-                <USelect v-model="sortBy" :items="sortOptions" icon="material-symbols:sort" size="xl" variant="outline"
-                    placeholder="เรียงตาม" highlight color="error"
-                    :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
+        <header class="justify-between items-center space-y-5 mb-6">
+            <div class="flex flex-col items-center gap-2 my-8">
+                <h1 class="text-4xl md:text-5xl leading-tight font-extrabold text-red-600">ผลงานศิลปะทั้งหมด</h1>
+                <p class="text-gray-600 text-base md:text-lg">คอลเลกชันผลงานศิลปะคุณภาพสูงจากศิลปินมากความสามารถ</p>
             </div>
-        </div>
 
-        <!-- Results Header -->
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-bold text-gray-800">
-                ผลงานทั้งหมด
-                <span class="text-red-600">{{ artworks?.length || 0 }}</span>
-                ชิ้น
-            </h2>
-            <div class="flex items-center gap-2 text-sm text-gray-500">
-                <Icon name="material-symbols:grid-view" size="16" />
-                <span>มุมมองแบบตาราง</span>
+            <div class="flex items-center justify-between mb-3">
+                <!-- Search Bar -->
+                <UInput v-model="searchQuery" icon="material-symbols:search" size="xl" variant="outline"
+                    placeholder="ค้นหาผลงานศิลปะ" class="w-full max-w-2xl" highlight
+                    :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200' }" />
+
+                <div class="flex gap-3">
+                    <!-- Category Filter -->
+                    <USelect v-model="categoryFilter" :items="categoryOptions"
+                        icon="material-symbols:filter-alt-outline" size="xl" variant="outline"
+                        placeholder="กรองตามประเภท" highlight color="error"
+                        :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200 max-h-fit', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
+                    <!-- Sort Filter -->
+                    <USelect v-model="sortBy" :items="sortOptions" icon="material-symbols:sort" size="xl"
+                        variant="outline" placeholder="เรียงตาม" highlight color="error"
+                        :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
+                </div>
             </div>
-        </div>
 
+            <!-- Results Header -->
+            <div class="flex items-center justify-between ">
+                <h2 class="text-xl font-bold text-gray-800">
+                    ผลงานทั้งหมด
+                    <span class="text-red-600">{{ artworks?.length || 0 }}</span>
+                    ชิ้น
+                </h2>
+                <div class="flex items-center gap-2 text-sm text-gray-500">
+                    <Icon name="material-symbols:grid-view" size="16" />
+                    <span>มุมมองแบบตาราง</span>
+                </div>
+            </div>
+        </header>
         <!-- Artworks Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
             <NuxtLink v-for="art in filteredArtworks" :key="art._id" :to="`/artworks/${art.artname}`" class="group">
@@ -46,7 +48,7 @@
         </div>
 
         <!-- Loading State -->
-        <div v-if="!artworks?.length" class="flex flex-col items-center justify-center py-16">
+        <div v-if="!filteredArtworks?.length" class="flex flex-col items-center justify-center py-16">
             <Icon name="material-symbols:search-off" size="64" class="text-gray-300 mb-4" />
             <h3 class="text-xl font-semibold text-gray-500 mb-2">ไม่พบผลงานศิลปะ</h3>
             <p class="text-gray-400">ลองค้นหาด้วยคำค้นอื่น หรือเปลี่ยนตัวกรอง</p>
@@ -88,7 +90,7 @@ const filteredArtworks = computed<Arts[]>(() => {
         })
     }
 
-      if (categoryFilter.value && categoryFilter.value !== 'all') {
+    if (categoryFilter.value && categoryFilter.value !== 'all') {
         list = list.filter(a => a.type === categoryFilter.value)
     }
 

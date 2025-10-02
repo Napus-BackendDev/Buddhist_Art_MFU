@@ -13,6 +13,8 @@ export interface Arts {
   technique: string;
   status: string;
   price: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ArtDetail {

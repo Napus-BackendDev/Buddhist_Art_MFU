@@ -1,15 +1,5 @@
-export function useNews<T>() {
+export function useNews<News>() {
   const config = useRuntimeConfig();
-  const {
-    data: news,
-    pending: isLoading,
-    error,
-    refresh: fetchNews,
-  } = useAsyncData<T[]>(`${config.public.apiBaseUrl}/news`, () =>
-    $fetch<T[]>(`${config.public.apiBaseUrl}/news`)
-  );
-
-  console.log(news);
-
+  const { data: news, pending: isLoading, error, refresh: fetchNews } = useFetch<News>(`${config.public.apiUrl}/news`);
   return { news, isLoading, error, fetchNews };
 }

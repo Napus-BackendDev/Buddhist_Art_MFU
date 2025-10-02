@@ -1,11 +1,6 @@
 <template>
   <div class="flex flex-col justify-center items-center px-30 space-y-8 py-8">
-    <NuxtLink
-      class="self-start flex items-center px-6 py-3  hover:text-white hover:bg-red-600 duration-200 rounded-3xl gap-2"
-      to="/artworks">
-      <Icon name="material-symbols:arrow-left-alt-rounded" />
-      <p>กลับไปหน้าผลงานศิลปะ</p>
-    </NuxtLink>
+    <UButton icon="material-symbols:arrow-left-alt-rounded" class="self-start px-5 py-3 hover:text-white hover:bg-red-600 duration-200 rounded-3xl gap-2" color="error" to="/artworks" label="กลับไปหน้าผลงานศิลปะ" variant="outline" />
     <div class="grid grid-cols-2 gap-10">
       <div id="image-section" class="flex flex-col gap-8">
         <img :src="artworkDetails?.picture" alt="Artwork Image" class="w-full h-auto rounded-lg shadow-md" />
@@ -64,7 +59,7 @@
       <h1 class="flex justify-center text-4xl font-extrabold text-red-600"> ผลงานที่เกี่ยวข้อง </h1>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
         <NuxtLink v-for="art in artworks" :key="art._id" :to="`/artworks/${art.artname}`">
-          <ArtworkCard :art="art" />
+          <ArtworkCard :art="art" :button-sell="false" :editor="false" />
         </NuxtLink>
       </div>
     </section>

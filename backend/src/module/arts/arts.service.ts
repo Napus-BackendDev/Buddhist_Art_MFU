@@ -30,6 +30,12 @@ export class ArtsService {
     return await this.artModel.find().populate('user', 'username -_id').populate( 'orders' ).exec();
   }
 
+  async findOne(artId: string): Promise<ArtDocument> {
+    const art = await this.artModel.findById(artId).exec()
+    if (!art) throw new NotFoundException('Not found Art with this name');
+    return art
+  }
+
   async findByUser(usernameTh: string): Promise<ArtDocument[] | null> {
     const userArts = await this.artModel.find()
       .populate({

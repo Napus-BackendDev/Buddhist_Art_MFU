@@ -39,7 +39,7 @@
       <template v-if="user">
         <div class="relative group">
           <button class="flex items-center gap-2 px-4 py-1 bg-gray-100 text-gray-800 rounded hover:bg-gray-200">
-            <Icon name="carbon:user-avatar" size="22" />
+            <img :src="user?.photo" alt="Profile Picture" class="w-6 h-6 rounded-full object-cover" />
             <span>{{ user.username.th }}</span>
             <Icon v-if="user.role === 'admin'" name="carbon:chevron-down" size="18" />
           </button>
@@ -51,9 +51,12 @@
             <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">ออกจากระบบ</button>
           </div>
           <!-- Student: direct to profile -->
-          <NuxtLink v-else to="/profile"
-            class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-50 block px-4 py-2 hover:bg-gray-100">
-            โปรไฟล์</NuxtLink>
+          <div v-else="user.role === 'student'"
+            class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-auto z-50 transition-opacity">
+            <NuxtLink to="/profile" class="block px-4 py-2 hover:bg-gray-100">โปรไฟล์</NuxtLink>
+            <NuxtLink to="/profile/art" class="block px-4 py-2 hover:bg-gray-100">ผลงานศิลปะ</NuxtLink>
+            <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">ออกจากระบบ</button>
+          </div>
         </div>
       </template>
       <NuxtLink v-else class="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300 "

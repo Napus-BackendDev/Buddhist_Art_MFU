@@ -23,7 +23,7 @@ import { Roles } from '../core/auth/decorators/roles.decorator';
 
 @Roles(Role.STUDENT)
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Controller('/profile/arts')
+@Controller('/profile/art')
 export class ArtsControllerStudent {
   constructor(private readonly artsService: ArtsService) {}
 
@@ -44,7 +44,7 @@ export class ArtsControllerStudent {
 
   @Get('/:id')
   findOne(@Param('id') id: string) {
-    return this.artsService.findByUser(id);
+    return this.artsService.findOne(id);
   }
 
   @Patch('/:id')

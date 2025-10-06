@@ -17,7 +17,7 @@
                     วันนี้เรามีศิลปินมากกว่า 200 คน และผลงานศิลปะกว่า 1,000 ชิ้น ครอบคลุมตั้งแต่จิตรกรรม ประติมากรรม
                     ไปจนถึงศิลปะดิจิทัล</p>
             </div>
-            <img src="/about.jpg" class="rounded-2xl shadow-md w-full h-90 object-cover" />
+            <img src="/images/about.jpg" class="rounded-2xl shadow-md w-full h-90 object-cover" />
         </div>
         <div class="flex flex-col items-center justify-center gap-4 ">
             <h1 class="text-5xl font-bold text-red-600"> ค่านิยมของเรา </h1>

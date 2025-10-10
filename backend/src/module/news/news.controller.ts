@@ -19,8 +19,8 @@ import { Role } from 'src/common/types/types';
 import { JwtAuthGuard } from '../core/auth/guard/jwt-auth.guard';
 import { RolesGuard } from '../core/auth/guard/role.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { imageUploadOptions } from 'src/common/interceptors/upload-options';
 import { CookieUser } from 'src/common/interface/auth-interface';
+import { imageUploadOptions } from 'src/common/interceptors/upload-options';
 
 @Controller('news')
 export class NewsController {

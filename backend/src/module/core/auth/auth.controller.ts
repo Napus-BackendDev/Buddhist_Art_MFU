@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './guard/local-auth.guard';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
 import { UserService } from '../user/user.service';
+import { CookieUser } from 'src/common/interface/auth-interface';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +23,10 @@ export class AuthController {
 
   @UseGuards(LocalStrategy)
   @Post('/login')
-  async login(@Request() req, @Res({ passthrough: true }) res: Response) {
+  async login(
+    @Request() req: CookieUser,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const { access_Token } = await this.authService.login(req.user);
     res.cookie('access_Token', access_Token, {
       httpOnly: true,
@@ -34,7 +38,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/profile')
-  getProfile(@Req() req) {
+  getProfile(@Req() req: CookieUser) {
     const user = this.userService.findByStudentID(req.user.studentId);
     return user;
   }

@@ -11,7 +11,6 @@ import { EmailDto, LocalizationDto } from 'src/common/types/dto/types-dto';
 import { Role } from 'src/common/types/types';
 
 export class RegisterDto {
-
   @IsNotEmptyObject()
   @ValidateNested()
   @Type(() => LocalizationDto)
@@ -29,7 +28,6 @@ export class RegisterDto {
   @IsString()
   @IsNotEmpty()
   readonly studentId: string;
-
 
   @IsString()
   readonly tel: string;

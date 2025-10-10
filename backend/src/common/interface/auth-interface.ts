@@ -1,4 +1,4 @@
-import { Localization } from "../types/types";
+import { Localization } from '../types/types';
 
 export interface JwtPayload {
   sub: string;
@@ -18,4 +18,16 @@ export interface AuthUser {
 
 export interface LoginResult {
   access_Token: string;
+}
+
+export interface JwtToken {
+  studentId: string;
+  username: Localization;
+  role: string;
+  _id: string;
+  sub: string;
+}
+
+export interface CookieUser extends Request {
+  user: JwtToken;
 }

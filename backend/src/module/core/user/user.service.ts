@@ -14,7 +14,10 @@ import { generateImageUrl } from 'src/common/utils/utils';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async resigter( resigterUserDto: RegisterDto, photo: Express.Multer.File ): Promise<UserDocument> {
+  async resigter(
+    resigterUserDto: RegisterDto,
+    photo: Express.Multer.File,
+  ): Promise<UserDocument> {
     const studentId = resigterUserDto.studentId;
     const exists = await this.userModel.findOne({ studentId }).exec();
 
@@ -28,9 +31,9 @@ export class UserService {
     const createdUser = new this.userModel(userData);
     return await createdUser.save();
   }
-  
+
   async findByStudentID(studentId: string): Promise<UserDocument | null> {
-  return await this.userModel.findOne({ studentId }).populate('arts').exec();
+    return await this.userModel.findOne({ studentId }).populate('arts').exec();
   }
 
   async findAll(): Promise<UserDocument[]> {
@@ -41,13 +44,24 @@ export class UserService {
     return await this.userModel.findById(id).exec();
   }
 
-  async update( id: string, updateUserDto: UpdateUserDto, photo: Express.Multer.File ): Promise<UserDocument | null> {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+    photo: Express.Multer.File,
+  ): Promise<UserDocument | null> {
     const user = await this.userModel.findById(id).exec();
     const userData = {
       ...updateUserDto,
-      ...( photo && { photo: generateImageUrl( user?.studentId || '', 'profile', photo.filename )}),
+      ...(photo && {
+        photo: generateImageUrl(
+          user?.studentId || '',
+          'profile',
+          photo.filename,
+        ),
+      }),
     };
-    if (!user || !user._id) throw new NotFoundException('User not found or missing user ID');
+    if (!user || !user._id)
+      throw new NotFoundException('User not found or missing user ID');
     return await this.userModel.findByIdAndUpdate(id, userData, { new: true });
   }
 

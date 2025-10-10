@@ -20,6 +20,7 @@ import { imageUploadOptions } from 'src/common/interceptors/upload-options';
 import { RolesGuard } from '../core/auth/guard/role.guard';
 import { Role } from 'src/common/types/types';
 import { Roles } from '../core/auth/decorators/roles.decorator';
+import { CookieUser } from 'src/common/interface/auth-interface';
 
 @Roles(Role.STUDENT)
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -30,7 +31,7 @@ export class ArtsControllerStudent {
   @Post()
   @UseInterceptors(FileInterceptor('picture', imageUploadOptions('arts')))
   createArts(
-    @Request() req,
+    @Request() req: CookieUser,
     @Body() createArtDto: CreateArtDto,
     @UploadedFile() picture: Express.Multer.File,
   ) {

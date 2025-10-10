@@ -85,14 +85,11 @@ export class ArtsService {
       .populate('user', 'studentId')
       .exec();
     if (!art) throw new NotFoundException('Art not found');
+    const user = art.user as unknown as { studentId: string };
     const artData = {
       ...updateArtDto,
       ...(picture && {
-        picture: generateImageUrl(
-          (art.user as any).studentId,
-          'arts',
-          picture.filename,
-        ),
+        picture: generateImageUrl(user.studentId, 'arts', picture.filename),
       }),
     };
     return await this.artModel.findByIdAndUpdate(id, artData, { new: true });

@@ -1,10 +1,10 @@
-import { Localization } from '../types/types';
+import { Localization, Role } from '../types/types';
 
 export interface JwtPayload {
   sub: string;
   studentId: string;
   username: Localization;
-  role: string;
+  role: Role;
   iat: number;
   exp: number;
 }

@@ -38,7 +38,7 @@ export class NewsService {
     updateNewsDto: UpdateNewsDto,
     image: Express.Multer.File,
   ): Promise<NewsDocument | null> {
-    const News = this.NewsModule.findById(id);
+    const News = await this.NewsModule.findById(id);
     if (!News) throw new NotFoundException('this News is not found');
     const NewsData = {
       ...updateNewsDto,

@@ -11,7 +11,9 @@ import { NewsModule } from './module/news/news.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URL || 'mongodb://localhost:27017/buddhist_art_mfu'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URL || 'mongodb://localhost:27017/buddhist_art_mfu',
+    ),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -24,7 +26,7 @@ import { NewsModule } from './module/news/news.module';
     AuthModule,
     ArtsModule,
     OrderModule,
-    NewsModule
+    NewsModule,
   ],
 })
 export class AppModule {}

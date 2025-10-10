@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class LocalizationDto {
   @IsString()
@@ -10,10 +10,10 @@ export class LocalizationDto {
 }
 
 export class EmailDto {
-    @IsString()
-    @IsNotEmpty()
-    personal: string
-    @IsString()
-    @IsNotEmpty()
-    university: string
+  @IsString()
+  @IsNotEmpty()
+  personal: string;
+  @IsString()
+  @IsNotEmpty()
+  university: string;
 }

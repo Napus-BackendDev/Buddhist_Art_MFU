@@ -8,13 +8,18 @@ import { generateImageUrl } from 'src/common/utils/utils';
 
 @Injectable()
 export class NewsService {
+  constructor(
+    @InjectModel(News.name) private NewsModule: Model<NewsDocument>,
+  ) {}
 
-  constructor(@InjectModel(News.name) private NewsModule: Model<NewsDocument> ) {}
-
-  async create(username: string , createNewsDto: CreateNewsDto, image: Express.Multer.File): Promise<NewsDocument> {
+  async create(
+    username: string,
+    createNewsDto: CreateNewsDto,
+    image: Express.Multer.File,
+  ): Promise<NewsDocument> {
     const NewsData = {
       ...createNewsDto,
-      image: generateImageUrl(username, "news", image.filename),
+      image: generateImageUrl(username, 'news', image.filename),
     };
     return await new this.NewsModule(NewsData).save();
   }
@@ -27,13 +32,20 @@ export class NewsService {
     return await this.NewsModule.findById(id);
   }
 
-  async update(id: string , username: string, updateNewsDto: UpdateNewsDto , image: Express.Multer.File): Promise<NewsDocument | null> { 
-    const News = this.NewsModule.findById(id)
-    if (!News) throw new NotFoundException('this News is not found')
+  async update(
+    id: string,
+    username: string,
+    updateNewsDto: UpdateNewsDto,
+    image: Express.Multer.File,
+  ): Promise<NewsDocument | null> {
+    const News = this.NewsModule.findById(id);
+    if (!News) throw new NotFoundException('this News is not found');
     const NewsData = {
       ...updateNewsDto,
-      ...( image && { photo: generateImageUrl( username , 'news', image.filename )})
-    }
+      ...(image && {
+        photo: generateImageUrl(username, 'news', image.filename),
+      }),
+    };
     return await this.NewsModule.findByIdAndUpdate(id, NewsData);
   }
 

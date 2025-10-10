@@ -20,6 +20,7 @@ import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from 'src/common/types/types';
 import { RolesGuard } from '../auth/guard/role.guard';
+import { CookieUser } from 'src/common/interface/auth-interface';
 
 @Roles(Role.STUDENT)
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -30,7 +31,7 @@ export class UserController {
   @Patch()
   @UseInterceptors(FileInterceptor('photo', imageUploadOptions('profile')))
   async updateProfile(
-    @Request() req,
+    @Request() req: CookieUser,
     @Body() updateUserDto: UpdateUserDto,
     @UploadedFile() photo: Express.Multer.File,
   ) {
@@ -38,11 +39,10 @@ export class UserController {
   }
 
   @Delete()
-  async deleteProfile(@Request() req) {
+  async deleteProfile(@Request() req: CookieUser) {
     return await this.userService.remove(req.user.sub);
   }
 }
-
 
 @Roles(Role.ADMIN)
 @UseGuards(JwtAuthGuard, RolesGuard)

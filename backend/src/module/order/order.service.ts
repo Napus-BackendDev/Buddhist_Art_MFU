@@ -10,7 +10,7 @@ export class OrderService {
   constructor(@InjectModel(Order.name) private orderModel: Model<Order>) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<OrderDocument> {
-    return await new this.orderModel(createOrderDto).save() ;
+    return await new this.orderModel(createOrderDto).save();
   }
 
   async findAll(): Promise<OrderDocument[]> {
@@ -18,11 +18,16 @@ export class OrderService {
   }
 
   async findByName(name: string): Promise<OrderDocument | null> {
-    return await this.orderModel.findOne({ name }).populate('orderArts').exec() ;
+    return await this.orderModel.findOne({ name }).populate('orderArts').exec();
   }
 
-  async update(id: string, updateOrderDto: UpdateOrderDto): Promise<OrderDocument | null> {
-    return await this.orderModel.findByIdAndUpdate(id,updateOrderDto, { new: true });
+  async update(
+    id: string,
+    updateOrderDto: UpdateOrderDto,
+  ): Promise<OrderDocument | null> {
+    return await this.orderModel.findByIdAndUpdate(id, updateOrderDto, {
+      new: true,
+    });
   }
 
   remove(id: string) {

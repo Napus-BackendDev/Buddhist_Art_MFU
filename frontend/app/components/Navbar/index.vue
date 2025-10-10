@@ -1,86 +1,51 @@
 <template>
-  <nav class="flex items-center px-6 py-3 shadow-md">
-    <!-- Logo Left -->
-    <div class="flex items-center">
-      <img src="/logo.jpg" alt="Logo" class="h-10 w-10 mr-3" />
-      <div>
-        <span class="font-bold text-red-600 text-lg">Buddhist Art MFU</span>
-        <div class="text-sm text-gray-600">มหาวิทยาลัยแม่ฟ้าหลวง</div>
-      </div>
-    </div>
-
-    <!-- Topic Center -->
-    <ul class="flex-1 flex justify-center space-x-6">
-      <li>
-        <NuxtLink href="/">หน้าแรก</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink href="/artworks">ผลงานศิลปะ</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink href="/news">ข่าวสาร</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink href="/about">เกี่ยวกับเรา</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink href="/contact">ติดต่อผู้ดูแล</NuxtLink>
-      </li>
-    </ul>
-
-    <!-- Language Switcher Right -->
-    <div class="flex items-center">
-      <button @click="toggleLanguage"
-        class="px-2 py-1 border rounded mr-2 flex gap-1 hover:bg-red-200 cursor-pointer items-center justify-center">
-        <Icon name="jam:world" size="18" />
-        <span>{{ language.toUpperCase() }}</span>
-      </button>
-
-      <template v-if="user">
-        <div class="relative group">
-          <button class="flex items-center gap-2 px-4 py-1 bg-gray-100 text-gray-800 rounded hover:bg-gray-200">
-            <img :src="user?.photo" alt="Profile Picture" class="w-6 h-6 rounded-full object-cover" />
-            <span>{{ user.username.th }}</span>
-            <Icon v-if="user.role === 'admin'" name="carbon:chevron-down" size="18" />
-          </button>
-          <!-- Dropdown for admin -->
-          <div v-if="user.role === 'admin'"
-            class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-auto z-50 transition-opacity">
-            <NuxtLink to="/admin" class="block px-4 py-2 hover:bg-gray-100">Admin Dashboard</NuxtLink>
-            <NuxtLink to="/profile" class="block px-4 py-2 hover:bg-gray-100">โปรไฟล์</NuxtLink>
-            <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">ออกจากระบบ</button>
-          </div>
-          <!-- Student: direct to profile -->
-          <div v-else="user.role === 'student'"
-            class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-auto z-50 transition-opacity">
-            <NuxtLink to="/profile" class="block px-4 py-2 hover:bg-gray-100">โปรไฟล์</NuxtLink>
-            <NuxtLink to="/profile/art" class="block px-4 py-2 hover:bg-gray-100">ผลงานศิลปะ</NuxtLink>
-            <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">ออกจากระบบ</button>
-          </div>
+  
+  <UHeader class="bg-gray-50 border-b-0 shadow-md " :ui="{ right: 'flex items-center gap-4' }">
+    <template #title>
+      <div class="flex">
+        <img src="/images/logo.jpg" alt="Logo" class="h-10 w-10 mr-3" />
+        <div>
+          <span class="font-bold text-red-600 text-lg">Buddhist Art MFU</span>
+          <div class="text-sm text-gray-600">มหาวิทยาลัยแม่ฟ้าหลวง</div>
         </div>
-      </template>
-      <NuxtLink v-else class="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300 "
-        to="/login">
-        เข้าสู่ระบบ
-      </NuxtLink>
-    </div>
-  </nav>
+      </div>
+    </template>
+
+    <UNavigationMenu :items="items" variant="link" color="error" :ui="{ linkLabel: 'text-lg font-medium hover:text-red-500' }" />
+
+    <template #right>
+        <UButton :label="language === 'th' ? 'TH' : 'EN'" icon="lucide:globe" @click="toggleLanguage" color="error"
+          :ui="{ base: 'text-black bg-gray-100 hover:bg-red-600 hover:text-white duration-300' }" />
+        <template v-if="user">
+          <UDropdownMenu v-if="role === 'admin'" :items="adminItems" class="bg-red-500 hover:bg-red-600 duration-300"
+            :content="{ align: 'center', side: 'bottom', sideOffset: 8 }" >
+            <UButton :label="user.username?.th" color="neutral" variant="ghost" :avatar="{ src: user.photo }" />
+          </UDropdownMenu>
+          <UDropdownMenu v-else-if="role === 'student'" :items="studentItems" class="bg-red-500 hover:bg-red-600 duration-300"
+            :content="{ align: 'center', side: 'bottom', sideOffset: 8 }">
+            <UButton :label="user.username?.th" color="neutral" variant="ghost" :avatar="{ src: user.photo }" />
+          </UDropdownMenu>
+        </template>
+        <template v-else>
+          <UButton label="เข้าสู่ระบบ" to="/login" color="error" :ui="{ base: 'text-white bg-red-500 hover:bg-red-600 duration-300 ' }" />
+        </template>
+    </template>
+  </UHeader>
 </template>
 
 
-<script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useProfile } from '../../composables/useProfile'
-const config = useRuntimeConfig()
+<script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
+import type { DropdownMenuItem } from '@nuxt/ui'
 
+const router = useRouter()
+const config = useRuntimeConfig()
 const language = ref('th')
 const toggleLanguage = () => { language.value = language.value === 'th' ? 'en' : 'th' }
 
 const { user, role, fetchProfile } = useProfile()
 onMounted(async () => { await fetchProfile() })
 
-const router = useRouter()
 const logout = async () => {
   await useFetch(`${config.public.apiUrl}/auth/logout`, {
     method: 'POST',
@@ -89,4 +54,43 @@ const logout = async () => {
   user.value = null
   router.push('/login')
 }
+
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'หน้าแรก',
+    to: '/'
+  },
+  {
+    label: 'ผลงานศิลปะ',
+    to: '/artworks',
+  },
+  {
+    label: 'ข่าวสาร',
+    to: '/news',
+  },
+  {
+    label: 'เกี่ยวกับเรา',
+    to: '/about',
+  },
+  {
+    label: 'ติดต่อผู้ดูแล',
+    to: '/contact'
+  }
+])
+
+const studentItems: DropdownMenuItem[] = [
+  { label: 'จัดการผลงานศิลปะ', to: '/profile', icon: 'lucide:user-round' },
+  { label: 'อัพโหลดผลงานศิลปะ', to: '/profile/art', icon: 'lucide:brush' },
+  { label: 'ออกจากระบบ', onSelect: logout, icon: 'lucide:log-out' }
+]
+
+const adminItems: DropdownMenuItem[] = [
+  { label: 'แดชบอร์ดผู้ดูแล', to: '/admin/dashboard', icon: 'ic:round-dashboard' },
+  { label: 'จัดการผู้ใช้', to: '/admin/users', icon: 'lucide:user-round' },
+  { label: 'จัดการผลงานศิลปะ', to: '/admin/artworks', icon: 'lucide:brush' },
+  { label: 'การซื้อขาย', to: '/admin/orders', icon: 'lucide:shopping-cart' },
+  { label: 'จัดการข่าวสาร', to: '/admin/news', icon: 'ic:outline-newspaper' },
+  { label: 'ออกจากระบบ', onSelect: logout, icon: 'lucide:log-out' }
+]
+
 </script>

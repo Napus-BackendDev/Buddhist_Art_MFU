@@ -2,7 +2,7 @@
   <section id="Introduction" class=" py-8 pb-16 w-full">
     <div class="flex flex-col items-center gap-4">
       <h1 class="text-4xl md:text-6xl leading-tight font-extrabold text-red-600">
-        ค้นพบผลงานศิลปะ<br class="hidden md:block" />ที่ไม่เหมือนใคร
+        ค้นพบผลงานศิลปะ<br class="hidden md:block" >ที่ไม่เหมือนใคร
       </h1>
       <p class="max-w-3xl text-gray-600 text-base md:text-lg">
         แพลตฟอร์มซื้อขายผลงานศิลปะออนไลน์ที่รวบรวมผลงานจากศิลปินมากความสามารถ
@@ -14,8 +14,9 @@
       <div class="w-full max-w-3xl flex items-stretch shadow-sm">
         <div class="relative flex-1">
           <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400">🔎</span>
-          <input type="text" placeholder="ค้นหาผลงานศิลปะ, ศิลปิน, หรือหมวดหมู่..."
-            class="w-full border rounded-l-xl pl-10 pr-4 py-3 focus:outline-none" />
+          <input
+type="text" placeholder="ค้นหาผลงานศิลปะ, ศิลปิน, หรือหมวดหมู่..."
+            class="w-full border rounded-l-xl pl-10 pr-4 py-3 focus:outline-none" >
         </div>
         <button class="px-6 py-3 bg-rose-500 text-white rounded-r-xl hover:bg-rose-600">ค้นหา</button>
       </div>
@@ -35,7 +36,8 @@
   </section>
 
   <footer class="flex items-center justify-center my-7 w-full">
-    <NuxtLink to="/artworks"
+    <NuxtLink
+to="/artworks"
       class=" px-6 py-3 bg-rose-500 text-white rounded-xl hover:bg-rose-600 inline-block text-center">
       ดูผลงานทั้งหมด
     </NuxtLink>

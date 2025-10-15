@@ -1,7 +1,7 @@
 <template>
     <div class="relative  rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-shadow duration-300">
         <div class="relative">
-            <img :src="art.picture" :alt="art.artname" class="w-full h-64 object-cover" />
+            <img :src="art.picture" :alt="art.artname" class="w-full h-64 object-cover" >
             <div class="absolute top-3 right-3 flex gap-2">
                 <template v-if="editor">
                     <!-- Editor Mode: Edit & Delete buttons -->
@@ -43,7 +43,8 @@
                 <p>เทคนิค: {{ art.technique }}</p>
             </div>
 
-            <button v-if="buttonSell" class="mt-5 w-full px-4 py-3 rounded-lg flex items-center justify-center gap-2"
+            <button
+v-if="buttonSell" class="mt-5 w-full px-4 py-3 rounded-lg flex items-center justify-center gap-2"
                 :class="art.status === 'sold' ? 'bg-rose-200 text-rose-700 cursor-not-allowed' : 'bg-rose-500 hover:bg-rose-600 text-white'"
                 :disabled="art.status === 'available'">
                 <span v-if="art.status === 'sold'">สินค้าหมด</span>

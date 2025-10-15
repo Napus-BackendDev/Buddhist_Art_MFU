@@ -2,8 +2,9 @@
     <div class="flex flex-col items-center justify-center px-30 space-y-8 py-8">
         <section id="profile" class="bg-gray-100 w-full rounded-2xl p-8 flex flex-col md:flex-row gap-6">
             <div class="flex items-center gap-6 ">
-                <img :src="user?.photo" alt="Profile Picture"
-                    class="w-40 h-40 rounded-full object-cover border-4 border-red-500-opacity-50" />
+                <img
+:src="user?.photo" alt="Profile Picture"
+                    class="w-40 h-40 rounded-full object-cover border-4 border-red-500-opacity-50" >
                 <div class="flex flex-col gap-2">
                     <h1 class="text-3xl font-extrabold text-red-600">{{ user?.username?.th || 'ชื่อผู้ใช้' }}</h1>
                     <div class="grid grid-cols-1 md:grid-cols-2">

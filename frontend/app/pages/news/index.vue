@@ -6,7 +6,7 @@
     <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 px-10">
         <div v-for="news in news" :key="news._id" class="border rounded-2xl p-4 my-4 flex flex-col gap-2">
             <div v-if="news?.image">
-                <img :src="news.image" alt="News Image" class="w-full h-64 object-cover" />
+                <img :src="news.image" alt="News Image" class="w-full h-64 object-cover" >
             </div>
             <h1 class="text-2xl text-red-600 font-extrabold">{{ news?.title }}</h1>
             <p class="text-gray-600">{{ news?.description }}</p>

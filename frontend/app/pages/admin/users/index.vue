@@ -5,23 +5,14 @@
         </template>
     </UDashboardNavbar>
     <div class="grid grid-rows gap-6 p-6 ">
-        <UInput icon="material-symbols:search" size="xl" variant="outline" placeholder="Fillter" class="w-full max-w-xs"
+        <UInput
+icon="material-symbols:search" size="xl" variant="outline" placeholder="Fillter" class="w-full max-w-xs"
             highlight
             :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200' }" />
 
         <UTable ref="table" v-model:pagination="pagination" :data="users || []" :columns="columns" :pagination-options="{ getPaginationRowModel: getPaginationRowModel() }" class="flex-1">
             <template #name-cell="{ row }">
-                <div class="flex items-center gap-3">
-                    <UAvatar :src="row.original.photo" size="lg" />
-                    <div class="flex flex-col">
-                        <p class="font-medium text-highlighted">
-                            {{ row.original.username.th }}
-                        </p>
-                        <p>
-                            {{ row.original.username.en }}
-                        </p>
-                    </div>
-                </div>
+
             </template>
             <template #action-cell="{ row }">
                 <UDropdownMenu :items="getDropdownActions()">
@@ -31,7 +22,8 @@
         </UTable>
 
         <div class="flex justify-end border-t border-default pt-4">
-            <UPagination :default-page="(table?.tableApi?.getState().pagination.pageIndex || 0) + 1"
+            <UPagination
+:default-page="(table?.tableApi?.getState().pagination.pageIndex || 0) + 1"
                 :items-per-page="table?.tableApi?.getState().pagination.pageSize"
                 :total="table?.tableApi?.getFilteredRowModel().rows.length"
                 @update:page="(p) => table?.tableApi?.setPageIndex(p - 1)" />
@@ -76,6 +68,7 @@ interface User {
     studentId: string;
     email: Email;
     role: string;
+    tel: string;
     createdAt: string;
 }
 
@@ -98,8 +91,9 @@ const columns: TableColumn<User>[] = [
         header: 'Name',
         cell: ({ row }) => {
             const { username, studentId, photo } = row.original
+            console.log(photo)
             return h('div', { class: 'flex items-center gap-3' }, [
-                h('UAvatar', { src: encodeImageUrl(row.original.photo), size: 'lg' }),
+                h('UAvatar', { src: row.original.photo, size: 'lg' }),
                 h('div', undefined, [
                     h('p', { class: 'font-medium text-highlighted text-black' }, username.th),
                     h('p', undefined, studentId)

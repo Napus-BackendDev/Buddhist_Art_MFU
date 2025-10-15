@@ -15,47 +15,47 @@
                         <div class="grid grid-cols-2 gap-4 mt-4">
                             <UFormField label="Art ID" :ui="{ label: 'text-black' }">
                                 <UInput v-model="state.artId" placeholder="Enter unique art ID" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                    class="w-full" :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Art Name" :ui="{ label: 'text-black' }">
                                 <UInput v-model="state.artname" placeholder="Enter artwork name" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                    class="w-full" :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Size" :ui="{ label: 'text-black' }">
-                                <UInput v-model="state.size" placeholder="e.g.., 40x60 cm" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                <UInput v-model="state.size" placeholder="e.g.., 40x60 cm" color="error" class="w-full"
+                                    :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Price (THB)" :ui="{ label: 'text-black' }">
-                                <UInput v-model="state.price" placeholder="0" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                <UInput v-model="state.price" placeholder="0" color="error" class="w-full"
+                                    :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                         </div>
                         <UFormField label="Technique" class="my-4" :ui="{ label: 'text-black' }">
-                            <UInput v-model="state.technique" placeholder="ระบุเทคนิค" color="error"
-                                class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                            <UInput v-model="state.technique" placeholder="ระบุเทคนิค" color="error" class="w-full"
+                                :ui="{ base: 'text-black bg-gray-100' }" />
                         </UFormField>
                         <h1 class="text-lg font-medium">Details</h1>
                         <USeparator class="my-4" />
                         <UFormField label="Concept" :ui="{ label: 'text-black' }">
                             <UTextarea v-model="state.concept" placeholder="ระบุแนวคิดผลงาน" color="error"
-                                class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                class="w-full" :ui="{ base: 'text-black bg-gray-100' }" />
                         </UFormField>
                         <div class="grid grid-cols-2 gap-4 mt-4">
                             <UFormField label="Type" :ui="{ label: 'text-black' }">
-                                <UInput v-model="state.type" placeholder="ระบุประเภทผลงาน" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                <UInput v-model="state.type" placeholder="ระบุประเภทผลงาน" color="error" class="w-full"
+                                    :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Presentation" :ui="{ label: 'text-black' }">
                                 <UInput v-model="state.presentation" placeholder="ระบุการนำเสนอ" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                    class="w-full" :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Ratio" :ui="{ label: 'text-black' }">
-                                <UInput v-model="state.ratio" placeholder="Ratio" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                <UInput v-model="state.ratio" placeholder="Ratio" color="error" class="w-full"
+                                    :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                             <UFormField label="Storage Location" :ui="{ label: 'text-black' }">
-                                <UInput v-model="state.artAddress"  placeholder="Storage address or location" color="error"
-                                    class="w-full" :ui="{base: 'text-black bg-gray-100'}" />
+                                <UInput v-model="state.artAddress" placeholder="Storage address or location"
+                                    color="error" class="w-full" :ui="{ base: 'text-black bg-gray-100' }" />
                             </UFormField>
                         </div>
 
@@ -65,10 +65,11 @@
                         <USeparator class="my-4" />
                         <UFileUpload v-model="state.picture" label="อัปโหลดรูปภาพผลงานศิลปะ"
                             placeholder="คลิกหรือวางไฟล์ที่นี่เพื่ออัปโหลด"
-                            description="SVG, PNG, JPG or GIF (max. 2MB)" icon="i-lucide-image" :ui="{ base: 'py-12 bg-white border-2 hover:border-red-600 hover:bg-white ', label: 'text-black' }" >
+                            description="SVG, PNG, JPG or GIF (max. 2MB)" icon="i-lucide-image"
+                            :ui="{ base: 'py-12 bg-white border-2 hover:border-red-600 hover:bg-white ', label: 'text-black' }">
                             <template #actions="{ open }">
-                                <UButton label="Select images" icon="i-lucide-upload" color="neutral" variant="outline"
-                                    />
+                                <UButton label="Select images" icon="i-lucide-upload" color="neutral"
+                                    variant="outline" />
                             </template>
                         </UFileUpload>
                     </div>
@@ -77,9 +78,13 @@
 
                 <USeparator class="my-6" />
                 <div class="flex justify-end space-x-4">
-                    <UButton type="reset" icon="tabler:reload" label="Clear Form"  color="error" :ui="{ base: 'text-black bg-gray-200 hover:bg-red-600 hover:text-white duration-200' }" @click="handleReset" />
-                    <UButton to="/profile/art" icon="mdi:window-close" label="Cancel" color="error"  :ui="{ base: 'text-black bg-gray-200 hover:bg-red-600 hover:text-white duration-200' }" />
-                    <UButton type="submit" icon="mdi-light:content-save" label="Upload Artwork" color="error" :ui="{ base: 'text-white bg-red-500 hover:bg-red-400 duration-200' }"  />
+                    <UButton type="reset" icon="tabler:reload" label="Clear Form" color="error"
+                        :ui="{ base: 'text-black bg-gray-200 hover:bg-red-600 hover:text-white duration-200' }"
+                        @click="handleReset" />
+                    <UButton to="/profile/art" icon="mdi:window-close" label="Cancel" color="error"
+                        :ui="{ base: 'text-black bg-gray-200 hover:bg-red-600 hover:text-white duration-200' }" />
+                    <UButton type="submit" icon="mdi-light:content-save" label="Upload Artwork" color="error"
+                        :ui="{ base: 'text-white bg-red-500 hover:bg-red-400 duration-200' }" />
                 </div>
             </UForm>
         </UCard>

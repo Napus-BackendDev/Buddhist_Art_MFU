@@ -8,18 +8,21 @@
 
             <div class="flex items-center justify-between mb-3">
                 <!-- Search Bar -->
-                <UInput v-model="searchQuery" icon="material-symbols:search" size="xl" variant="outline"
+                <UInput
+v-model="searchQuery" icon="material-symbols:search" size="xl" variant="outline"
                     placeholder="ค้นหาผลงานศิลปะ" class="w-full max-w-2xl" highlight
                     :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200' }" />
 
                 <div class="flex gap-3">
                     <!-- Category Filter -->
-                    <USelect v-model="categoryFilter" :items="categoryOptions"
+                    <USelect
+v-model="categoryFilter" :items="categoryOptions"
                         icon="material-symbols:filter-alt-outline" size="xl" variant="outline"
                         placeholder="กรองตามประเภท" highlight color="error"
                         :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200 max-h-fit', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
                     <!-- Sort Filter -->
-                    <USelect v-model="sortBy" :items="sortOptions" icon="material-symbols:sort" size="xl"
+                    <USelect
+v-model="sortBy" :items="sortOptions" icon="material-symbols:sort" size="xl"
                         variant="outline" placeholder="เรียงตาม" highlight color="error"
                         :ui="{ base: 'bg-white text-black rounded-xl ring ring-inset ring-gray-300 focus-visible:ring-2 focus-visible:ring-red-500 transition duration-200', trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200', content: 'bg-white shadow-lg ring-1 ring-gray-200', item: 'hover:bg-red-50 data-highlighted:bg-red-400 text-gray-800 rounded-md' }" />
                 </div>
@@ -42,7 +45,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
             <NuxtLink v-for="art in filteredArtworks" :key="art._id" :to="`/artworks/${art.artname}`" class="group">
                 <div class="transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                    <ArtworkCard :art="art" :buttonSell="true" :editor="false" />
+                    <ArtworkCard :art="art" :button-sell="true" :editor="false" />
                 </div>
             </NuxtLink>
         </div>

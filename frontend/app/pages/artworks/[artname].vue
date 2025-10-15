@@ -3,7 +3,7 @@
     <UButton icon="material-symbols:arrow-left-alt-rounded" class="self-start px-5 py-3 hover:text-white hover:bg-red-600 duration-200 rounded-3xl gap-2" color="error" to="/artworks" label="กลับไปหน้าผลงานศิลปะ" variant="outline" />
     <div class="grid grid-cols-2 gap-10">
       <div id="image-section" class="flex flex-col gap-8">
-        <img :src="artworkDetails?.picture" alt="Artwork Image" class="w-full h-auto rounded-lg shadow-md" />
+        <img :src="artworkDetails?.picture" alt="Artwork Image" class="w-full h-auto rounded-lg shadow-md" >
         <div class="border rounded-xl p-4 gap-2 flex flex-col">
           <h1 class="text-xl text-red-600 font-extrabold">เกี่ยวกับศิลปิน</h1>
           <p class="text-xl font-bold">{{ artworkDetails?.user.username.th }}</p>
@@ -47,7 +47,8 @@
           <p class="text-gray-600">{{ artworkDetails?.concept }}</p>
         </div>
         
-        <button class="px-6 py-3 rounded-xl inline-block text-center mt-2"
+        <button
+class="px-6 py-3 rounded-xl inline-block text-center mt-2"
           :class="artworkDetails?.status === 'sold' ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-rose-500 text-white hover:bg-rose-600'"
           :disabled="artworkDetails?.status === 'sold'">
           <span v-if="artworkDetails?.status === 'sold'">จองแล้ว</span>

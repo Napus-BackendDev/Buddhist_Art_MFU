@@ -3,7 +3,7 @@
   <UHeader class="bg-gray-50 border-b-0 shadow-md " :ui="{ right: 'flex items-center gap-4' }">
     <template #title>
       <div class="flex">
-        <img src="/images/logo.jpg" alt="Logo" class="h-10 w-10 mr-3" />
+        <img src="/images/logo.jpg" alt="Logo" class="h-10 w-10 mr-3" >
         <div>
           <span class="font-bold text-red-600 text-lg">Buddhist Art MFU</span>
           <div class="text-sm text-gray-600">มหาวิทยาลัยแม่ฟ้าหลวง</div>
@@ -14,14 +14,17 @@
     <UNavigationMenu :items="items" variant="link" color="error" :ui="{ linkLabel: 'text-lg font-medium hover:text-red-500' }" />
 
     <template #right>
-        <UButton :label="language === 'th' ? 'TH' : 'EN'" icon="lucide:globe" @click="toggleLanguage" color="error"
-          :ui="{ base: 'text-black bg-gray-100 hover:bg-red-600 hover:text-white duration-300' }" />
+        <UButton
+:label="language === 'th' ? 'TH' : 'EN'" icon="lucide:globe" color="error" :ui="{ base: 'text-black bg-gray-100 hover:bg-red-600 hover:text-white duration-300' }"
+          @click="toggleLanguage" />
         <template v-if="user">
-          <UDropdownMenu v-if="role === 'admin'" :items="adminItems" class="bg-red-500 hover:bg-red-600 duration-300"
+          <UDropdownMenu
+v-if="role === 'admin'" :items="adminItems" class="bg-red-500 hover:bg-red-600 duration-300"
             :content="{ align: 'center', side: 'bottom', sideOffset: 8 }" >
             <UButton :label="user.username?.th" color="neutral" variant="ghost" :avatar="{ src: user.photo }" />
           </UDropdownMenu>
-          <UDropdownMenu v-else-if="role === 'student'" :items="studentItems" class="bg-red-500 hover:bg-red-600 duration-300"
+          <UDropdownMenu
+v-else-if="role === 'student'" :items="studentItems" class="bg-red-500 hover:bg-red-600 duration-300"
             :content="{ align: 'center', side: 'bottom', sideOffset: 8 }">
             <UButton :label="user.username?.th" color="neutral" variant="ghost" :avatar="{ src: user.photo }" />
           </UDropdownMenu>
@@ -35,8 +38,8 @@
 
 
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
-import type { DropdownMenuItem } from '@nuxt/ui'
+import type { NavigationMenuItem, DropdownMenuItem  } from '@nuxt/ui'
+
 
 const router = useRouter()
 const config = useRuntimeConfig()

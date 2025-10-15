@@ -22,7 +22,7 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 
 const items: NavigationMenuItem[][] = [[{
     label: 'Dashboard',
-    icon: 'i-lucide-house',
+    icon: 'lucide:layout-dashboard',
     to: '/admin/dashboard',
 }, {
     label: 'Artworks',

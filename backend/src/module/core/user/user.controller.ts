@@ -56,7 +56,7 @@ export class AdminController {
     @Body() registerUserDto: RegisterDto,
     @UploadedFile() photo: Express.Multer.File,
   ) {
-    return this.userService.resigter(registerUserDto, photo);
+    return this.userService.register(registerUserDto, photo);
   }
 
   @Get()

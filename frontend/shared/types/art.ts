@@ -11,8 +11,12 @@ export interface Arts {
   artname: string;
   size: string;
   technique: string;
+  concept: string;
   status: string;
   price: number;
+  presentation: string;
+  artAddress: string;
+  ratio: string;
   createdAt: string;
   updatedAt: string;
 }

@@ -14,7 +14,7 @@ export class CreateArtDto {
   @IsNotEmpty()
   artname: string;
   @IsOptional()
-  @IsObject()
+  @IsString()
   @IsNotEmpty()
   user: string;
   @IsString()

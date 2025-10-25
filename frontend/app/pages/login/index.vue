@@ -10,15 +10,17 @@
                 <h1 class="text-md text-center text-gray-500 px-10">เข้าสู่ระบบเพื่อจัดการผลงานศิลปะของคุณ</h1>
             </div>
             <UFormField label="Username" class="w-full" :ui="{ label: 'text-black' }">
-                <UInput icon="mdi:account-outline" variant="subtle" v-model="state.studentId" label="Username" :ui="{ base: 'text-black bg-white' }" 
-                    placeholder="StudentID..." size="md" color="error" class="w-full" />
+                <UInput icon="mdi:account-outline" variant="subtle" v-model="state.studentId" label="Username"
+                    :ui="{ base: 'text-black bg-white' }" placeholder="StudentID..." size="md" color="error"
+                    class="w-full" />
             </UFormField>
             <UFormField label="Password" class="w-full" :ui="{ label: 'text-black' }">
                 <UInput icon="mdi:lock-outline" variant="subtle" v-model="state.password" type="password"
-                    placeholder="Password..." size="md" color="error" class="w-full duration-200" :ui="{ base: 'text-black bg-white' }" />
+                    placeholder="Password..." size="md" color="error" class="w-full duration-200"
+                    :ui="{ base: 'text-black bg-white' }" />
             </UFormField>
             <div class=" w-full flex items-center justify-between">
-                <UCheckbox color="error"  label="remember me"  :ui="{ label: 'text-black' }"/>
+                <UCheckbox color="error" label="remember me" :ui="{ label: 'text-black' }" />
                 <NuxtLink to="/forgot-password" class="text-red-600 hover:underline">ลืมรหัสผ่าน?</NuxtLink>
             </div>
             <UButton type="submit" color="error" variant="solid" size="lg"
@@ -49,6 +51,7 @@ const state = reactive({
 })
 
 const toast = useToast()
+
 async function onSubmit(event: FormSubmitEvent<Schema>) {
     try {
         await useFetch(`${config.public.apiUrl}/auth/login`, {

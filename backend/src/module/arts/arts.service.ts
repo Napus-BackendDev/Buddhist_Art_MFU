@@ -32,8 +32,6 @@ export class ArtsService {
       ),
     };
 
-    if (!id) throw new BadRequestException('User ID is required');
-
     return await new this.artModel(artData).save();
   }
 

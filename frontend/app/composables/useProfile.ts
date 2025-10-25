@@ -1,5 +1,7 @@
 import { ref, computed } from "vue";
-const user = ref<UserProfile | null>(null);
+import type { User } from "~~/shared/types/user";
+
+const user = ref<User | null>(null);
 const role = computed(() => user.value?.role ?? null);
 
 export function useProfile() {
@@ -9,7 +11,7 @@ export function useProfile() {
     const { data } = await useFetch(`${config.public.apiUrl}/auth/profile`, {
       credentials: "include",
     });
-    user.value = data.value as UserProfile;
+    user.value = data.value as User;
   };
 
   return { user, role, fetchProfile };

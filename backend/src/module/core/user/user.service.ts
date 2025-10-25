@@ -14,17 +14,17 @@ import { generateImageUrl } from 'src/common/utils/utils';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async resigter(
-    resigterUserDto: RegisterDto,
+  async register(
+    registerUserDto: RegisterDto,
     photo: Express.Multer.File,
   ): Promise<UserDocument> {
-    const studentId = resigterUserDto.studentId;
+    const studentId = registerUserDto.studentId;
     const exists = await this.userModel.findOne({ studentId }).exec();
 
     if (exists) throw new ConflictException('This studentId already exists');
 
     const userData = {
-      ...resigterUserDto,
+      ...registerUserDto,
       photo: generateImageUrl(studentId, 'profile', photo.filename),
     };
 

@@ -35,7 +35,7 @@
 
             <div class="mt-3">
                 <h3 class="font-bold text-lg">{{ art.artname }}</h3>
-                <p class="text-gray-600">โดย {{ art.user.username.th }}</p>
+                <p class="text-gray-600">โดย {{ art.user?.username?.th ?? "" }}</p>
             </div>
 
             <div class="mt-3 text-sm text-gray-700 space-y-1">

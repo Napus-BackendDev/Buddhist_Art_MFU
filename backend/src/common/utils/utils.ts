@@ -3,5 +3,5 @@ export const generateImageUrl = (
   category: 'profile' | 'arts' | 'news',
   filename: string,
 ): string => {
-  return `${process.env.BASE_URL}/uploads/${studentId}/${category}/${filename}`;
+  return `${process.env.BASE_URL}uploads/${studentId}/${category}/${filename}`;
 };
